@@ -211,12 +211,13 @@ ext.addUnimodulesDependencies = { Map customOptions = [:] ->
       configuration: 'implementation',
       target       : 'react-native',
       exclude      : [],
+      skipRNCheck  : false,
   ] << customOptions
 
   addUnimodulesDependencies(options.target, options.exclude, options.modulesPaths, {unimodule ->
     Object dependency = project.project(':' + unimodule.name)
     project.dependencies.add(options.configuration, dependency)
-  })
+  }, options.skipRNCheck)
 }
 
 ext.addMavenUnimodulesDependencies = { Map customOptions = [:] ->
@@ -225,6 +226,7 @@ ext.addMavenUnimodulesDependencies = { Map customOptions = [:] ->
       configuration: 'implementation',
       target       : 'react-native',
       exclude      : [],
+      skipRNCheck  : false,
   ] << customOptions
 
   addUnimodulesDependencies(options.target, options.exclude, options.modulesPaths, {unimodule ->
@@ -232,7 +234,7 @@ ext.addMavenUnimodulesDependencies = { Map customOptions = [:] ->
         options.configuration,
         "${unimodule.androidGroup}:${unimodule.name}:${unimodule.version}"
     )
-  })
+  }, options.skipRNCheck)
 }
 
 ext.includeUnimodulesProjects = { Map customOptions = [:] ->
