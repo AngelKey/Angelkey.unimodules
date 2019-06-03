@@ -169,8 +169,8 @@ class Colors {
   static final String MAGENTA = "\u001B[35m"
 }
 
-def addUnimodulesDependencies(String target, List exclude, List modulesPaths, Closure<Boolean> addUnimodule) {
-  if (!(new File(project.rootProject.projectDir.parentFile, 'package.json').exists())) {
+def addUnimodulesDependencies(String target, List exclude, List modulesPaths, Closure<Boolean> addUnimodule, Boolean skipRNCheck) {
+  if (!(new File(project.rootProject.projectDir.parentFile, 'package.json').exists()) && !skipRNCheck) {
     // There's no package.json
     throw new GradleException(
         "'addUnimodulesDependencies()' is being used in a project that doesn't seem to be a React Native project."
