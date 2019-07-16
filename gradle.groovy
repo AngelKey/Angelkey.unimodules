@@ -1,6 +1,7 @@
 import groovy.json.JsonSlurper
 
 import java.util.regex.Pattern
+import org.gradle.util.VersionNumber
 
 class Unimodule {
   String name
